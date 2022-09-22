@@ -35,4 +35,10 @@ func TestCache(t *testing.T) {
 	if err != nil || len(result) != 2 {
 		t.Errorf("expected length 2, got %d\n", len(result))
 	}
+
+	c.DeleteById(2)
+	result, err = c.ReadAll()
+	if err != nil || len(result) != 1 {
+		t.Errorf("expected length 2, got %d\n", len(result))
+	}
 }
