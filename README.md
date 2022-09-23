@@ -1,6 +1,6 @@
 # Cache
 
-Cache is a simple, generic, in-memory key datastores
+Cache is a simple, generic, in-memory key datastore
 
 ### Installation
 
