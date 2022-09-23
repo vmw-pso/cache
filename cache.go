@@ -12,17 +12,17 @@ type Item[T any] struct {
 }
 
 type cache[T any] struct {
-	wg   sync.WaitGroup
-	mu   sync.RWMutex
-	stop chan any
+	wg sync.WaitGroup
+	mu sync.RWMutex
+	//stop chan any
 	data map[int64]Item[T]
 }
 
 func NewCache[T any](cleanupInterval time.Duration) *cache[T] {
 	c := &cache[T]{
-		wg:   sync.WaitGroup{},
-		mu:   sync.RWMutex{},
-		stop: make(chan any),
+		wg: sync.WaitGroup{},
+		mu: sync.RWMutex{},
+		//stop: make(chan any),
 		data: make(map[int64]Item[T]),
 	}
 	c.wg.Add(1)
@@ -40,8 +40,8 @@ func (c *cache[T]) cleanupLoop(interval time.Duration) {
 
 	for {
 		select {
-		case <-c.stop:
-			return
+		// case <-c.stop:
+		// 	return
 		case <-t.C:
 			c.mu.Lock()
 			for uid, item := range c.data {
